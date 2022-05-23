@@ -1,0 +1,14 @@
+# Rotates acme.sh log once a year
+/var/log/acme.sh.log {
+
+    yearly
+    rotate 4
+    compress
+    # Do not rotate if empty
+    notifempty
+
+    delaycompress
+    missingok
+
+    create 644 syslog adm
+}
