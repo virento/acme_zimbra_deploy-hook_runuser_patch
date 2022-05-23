@@ -19,8 +19,8 @@
 -   /opt/zimbra/bin/zmcontrol restart
 +   sudo -E -H -u zimbra -n bash -c "/opt/zimbra/bin/zmcontrol restart"
 +   sleep 2
-+   sudo -E -H -u zimbra -n bash -c "/opt/zimbra/bin/zmloggerctl restart"
++   sudo -E -H -u zimbra -n bash -c "/opt/zimbra/bin/zmloggerctl start"
 +   sleep 2
-+   sudo -E -H -u zimbra -n bash -c "/opt/zimbra/bin/zmstatctl restart"
++   sudo -E -H -u zimbra -n bash -c "/opt/zimbra/bin/zmstatctl start"
     return 0
  }
