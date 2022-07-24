@@ -19,10 +19,10 @@
 -   sudo -E -H -u zimbra -n bash -c "/opt/zimbra/bin/zmcontrol restart"
 +   runuser -u zimbra -- /opt/zimbra/bin/zmcontrol restart
     sleep 2
--   sudo -E -H -u zimbra -n bash -c "/opt/zimbra/bin/zmloggerctl restart"
-+   runuser -u zimbra -- /opt/zimbra/bin/zmloggerctl restart
+-   sudo -E -H -u zimbra -n bash -c "/opt/zimbra/bin/zmloggerctl start"
++   runuser -u zimbra -- /opt/zimbra/bin/zmloggerctl start
     sleep 2
--   sudo -E -H -u zimbra -n bash -c "/opt/zimbra/bin/zmstatctl restart"
-+   runuser -u zimbra -- /opt/zimbra/bin/zmstatctl restart
+-   sudo -E -H -u zimbra -n bash -c "/opt/zimbra/bin/zmstatctl start"
++   runuser -u zimbra -- /opt/zimbra/bin/zmstatctl start
     return 0
  }
