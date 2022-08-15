@@ -1,12 +1,22 @@
 --- zimbra.sh	2022-05-15 15:16:08.354833731 -0500
 +++ zimbra-runuser_runas_zimbra.sh	2022-07-22 08:59:00.000000000 -0500
-@@ -33,16 +33,20 @@
- 
+@@ -21,6 +21,9 @@
+   _debug _cca "$_cca"
+   _debug _cfullchain "$_cfullchain"
+
++   # Change directory into root of acme.sh installation/config directory
++   cd $(dirname "$_cca")
++
+    # Zimbra's still needs CA pem to verify on some versions
+    ISG_X1="$(dirname "$_cca")/../ISG_X1.pem"
+    _debug ISG_X1 "$ISG_X1"
+@@ -33,16 +36,20 @@
+
     # append root pem so verifycrt can walk the chain
     cat "$_cfullchain" "$(dirname "$_cca")/../ISG_X1.pem" > "${_cca}.real"
 -   /opt/zimbra/bin/zmcertmgr verifycrt comm "$_ckey" "$_ccert" "${_cca}.real" || return 1
 +   runuser -u zimbra -- /opt/zimbra/bin/zmcertmgr verifycrt comm "$_ckey" "$_ccert" "${_cca}.real" || return 1
- 
+
     #if it verifies we can deploy it
     $(which logger) -p local2.info NETWORK "Certificate has been Renewed for $_cdomain"
     cp -f "$_ckey" /opt/zimbra/ssl/zimbra/commercial/commercial.key
